@@ -20,17 +20,6 @@ def loadCLE(file):
     outCSV_df.replace(float(-9),np.nan,inplace=True)
     return outCSV_df
 
-col_names = ['id','ccf','age','sex','painloc','painexer','relrest','pncaden',
-             'cp','trestbps','htn','chol','smoke','cigs','years','fbs','dm',
-             'famhist','restecg','ekgmo','ekgday','ekgyr','dig','prop','nitr',
-             'pro','diuretic','proto','thaldur','thaltime','met','thalach',
-             'thalrest','tpeakbps','tpeakbpd','trestbps','trestbpd','exang',
-             'xhypo','oldpeak','slope','rldv5','rldv5e','ca','restckm',
-             'exerckm','restef','restwm','exeref','exerwm','thal','thalsev',
-             'thalpul','earlobe','cmo','cday','cyr','num','lmt','ladprox',
-             'laddist','diag','cxmain','ramus','om1','om2','rcaprox','rcadist',
-             'lvx1','lvx2','lvx3','lvx4','lvf','cathef','junk']  
-
 #col_types = ['int','int','int','category','category',
 #             'category','category','int','category','float',
 #             'category','category','category','int','int',
@@ -53,6 +42,26 @@ col_names = ['id','ccf','age','sex','painloc','painexer','relrest','pncaden',
 #    return df
 
 def data_pipeline():
+    col_names = ['id','ccf','age','sex','painloc','painexer','relrest','pncaden',
+                 'cp','trestbps','htn','chol','smoke','cigs','years','fbs','dm',
+                 'famhist','restecg','ekgmo','ekgday','ekgyr','dig','prop','nitr',
+                 'pro','diuretic','proto','thaldur','thaltime','met','thalach',
+                 'thalrest','tpeakbps','tpeakbpd','trestbps','trestbpd','exang',
+                 'xhypo','oldpeak','slope','rldv5','rldv5e','ca','restckm',
+                 'exerckm','restef','restwm','exeref','exerwm','thal','thalsev',
+                 'thalpul','earlobe','cmo','cday','cyr','num','lmt','ladprox',
+                 'laddist','diag','cxmain','ramus','om1','om2','rcaprox','rcadist',
+                 'lvx1','lvx2','lvx3','lvx4','lvf','cathef','junk']
+    ind_cols = ['id','ccf','age','sex','painloc','painexer','relrest','pncaden',
+                 'cp','trestbps','htn','chol','smoke','cigs','years','fbs','dm',
+                 'famhist','restecg','ekgmo','ekgday','ekgyr','dig','prop','nitr',
+                 'pro','diuretic','proto','thaldur','thaltime','met','thalach',
+                 'thalrest','tpeakbps','tpeakbpd','trestbps','trestbpd','exang',
+                 'xhypo','oldpeak','slope','rldv5','rldv5e','ca','restckm',
+                 'exerckm','restef','restwm','exeref','exerwm','thal','thalsev',
+                 'thalpul','earlobe','cmo','cday','cyr', 'lmt','ladprox',
+                 'laddist','diag','cxmain','ramus','om1','om2','rcaprox','rcadist',
+                 'lvx1','lvx2','lvx3','lvx4','lvf','cathef','junk']
     file = './data/long-beach-va.data'    
     VA_df = loadHeart(file)
     VA_df.columns = col_names
@@ -72,4 +81,4 @@ def data_pipeline():
     
     df = pd.concat([VA_df, Hung_df, Switz_df, CLE_df])
     
-    return df
+    return df, ind_cols
