@@ -51,20 +51,25 @@ col_names = ['id','ccf','age','sex','painloc','painexer','relrest','pncaden',
 #    for i in range(10):  
 #        df[col_names[i]] = df[col_names[i]].astype(col_types[i])
 #    return df
-  
-file = './data/long-beach-va.data'    
-VA_df = loadHeart(file,75)
-VA_df.columns = col_names
 
-file = './data/hungarian.data'
-Hung_df = loadHeart(file,75)
-Hung_df.columns = col_names
-
-file = './data/switzerland.data'
-Switz_df = loadHeart(file,75)
-Switz_df.columns = col_names
-
-file = './data/new.data'
-CLE_df = loadCLE(file) 
-CLE_df.drop(CLE_df.columns[xrange(75,89)], axis=1, inplace=True)
-CLE_df.columns = col_names
+def data_pipeline():
+    file = './data/long-beach-va.data'    
+    VA_df = loadHeart(file)
+    VA_df.columns = col_names
+    
+    file = './data/hungarian.data'
+    Hung_df = loadHeart(file)
+    Hung_df.columns = col_names
+    
+    file = './data/switzerland.data'
+    Switz_df = loadHeart(file)
+    Switz_df.columns = col_names
+    
+    file = './data/new.data'
+    CLE_df = loadCLE(file) 
+    CLE_df.drop(CLE_df.columns[xrange(75,89)], axis=1, inplace=True)
+    CLE_df.columns = col_names
+    
+    df = pd.concat([VA_df, Hung_df, Switz_df, CLE_df])
+    
+    return df
