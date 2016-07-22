@@ -65,19 +65,23 @@ def data_pipeline():
     file = './data/long-beach-va.data'    
     VA_df = loadHeart(file)
     VA_df.columns = col_names
+    VA_df['site'] = 'VA'
     
     file = './data/hungarian.data'
     Hung_df = loadHeart(file)
-    Hung_df.columns = col_names
+    Hung_df.columns = col_names    
+    Hung_df['site'] = 'Hung'
     
     file = './data/switzerland.data'
     Switz_df = loadHeart(file)
     Switz_df.columns = col_names
+    Switz_df['site'] = 'Switz'
     
     file = './data/new.data'
     CLE_df = loadCLE(file) 
     CLE_df.drop(CLE_df.columns[xrange(75,89)], axis=1, inplace=True)
     CLE_df.columns = col_names
+    CLE_df['site'] = 'CLE'
     
     df = pd.concat([VA_df, Hung_df, Switz_df, CLE_df])
     
